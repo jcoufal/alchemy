@@ -1,5 +1,21 @@
 var CUI = CUI ? CUI : {};
 
+CUI.toggleRadioButtons = function() {
+  $('.control_group.double_input .input input[type="radio"]').click(function(){
+    var $clickedRadioButton = $(this);
+    var $urlInput = $('.control_group.double_input .input input[type="url"]');
+    var $fileInput = $('.control_group.double_input .input input[type="file"]');
+    var $inputToActivate = $clickedRadioButton.parent().next().find('input');
+ 
+    if ($inputToActivate.attr('type') == 'url') {
+      $urlInput.prop('disabled', false);
+      $fileInput.prop('disabled', true);
+    } else if ($inputToActivate.attr('type') == 'file') {
+      $urlInput.prop('disabled', true);
+      $fileInput.prop('disabled', false);
+    }
+  });
+};
 
 CUI.toggleInput = function() {
   var inputValue = "";
@@ -22,4 +38,5 @@ CUI.toggleInput = function() {
 
 $(document).ready(function() {
   CUI.toggleInput();
+  CUI.toggleRadioButtons();
 });

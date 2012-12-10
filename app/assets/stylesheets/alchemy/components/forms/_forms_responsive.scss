@@ -136,6 +136,22 @@
         }
       }
     }
+
+    .double_input {
+      & > .label {
+        margin-bottom: 5px;
+      }
+
+      &.error,
+      &.warning,
+      &.success {
+        .message {
+          position: relative;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
   }
 }
 

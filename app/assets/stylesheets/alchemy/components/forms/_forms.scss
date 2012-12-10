@@ -111,8 +111,8 @@
   input[type="range"] {
     width: auto;
     max-width: $input_width + $input_padding;
+    margin: 0 0 7px 0;
     padding: 6px 0;
-    margin-bottom: 7px;
   }
 
   input[type="range"] {
@@ -517,6 +517,104 @@
       image-url("alchemy/icons/error_icon.png") no-repeat 7px 6px,
       linear-gradient($light_box_gradient, $light_box_color 30%));
     @include filter-gradient($transparent_white_color, $transparent_white_color);
+  }
+}
+
+/*
+  =======================================
+  ADVANCED CONCEPTS
+  =======================================
+*/
+
+.form {
+  .double_input {
+    & > .input {
+      span.label,
+      .label_radio {
+        display: inline-block;
+        width: $second_label_width;
+        margin-right: -4px; /* get rid fo annoying space between inline-blocks! */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+        float: none;
+
+        label {
+          display: inline-block;
+        }
+      }
+
+      span.label {
+        width: $second_label_width - 20px;
+      }
+
+      span.label,
+      span.or {
+        display: none;
+      }
+
+      .nested_input {
+        display: inline-block;
+
+        input {
+          width: $input_width - $second_label_width;
+        }
+      }
+
+      input[type="radio"] {
+        margin: 0 3px 0 0;
+        position: relative;
+        top: 2px;
+      }
+    }
+
+    &.error,
+    &.warning,
+    &.success {
+      span.label,
+      .label_radio {
+        color: $error_color;
+      }
+
+      .message {
+        position: absolute;
+        left: $input_width + $input_padding + 15px;
+        top: 0;
+      }
+    }
+  }
+}
+
+
+.no-js {
+  .form {
+    .double_input {
+      & > .input {
+        .label_radio {
+          display: none;
+        }
+
+        span.label {
+          display: inline-block;
+        }
+
+        input[type="url"],
+        input[type="file"] {
+          width: $input_width - $second_label_width + 15px;
+        }
+
+        .or {
+          display: block;
+          margin-left: $second_label_width - 16px;
+          color: $note_text_color;
+        }
+
+        br {
+          display: none;
+        }
+      }
+    }
   }
 }
 
